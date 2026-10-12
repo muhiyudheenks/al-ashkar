@@ -48,7 +48,7 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t.home.whatsapp.cta}
-      className="group fixed bottom-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-charcoal text-white shadow-[0_14px_34px_-14px_rgba(32,32,32,0.6)] transition-all duration-500 ease-[cubic-bezier(.22,.61,.36,1)] end-5 hover:bg-gold hover:shadow-[0_18px_40px_-14px_rgba(197,161,91,0.75)] focus-visible:bg-gold md:bottom-7 md:h-16 md:w-16 md:end-7"
+      className="group fixed bottom-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_14px_34px_-14px_rgba(32,32,32,0.6)] transition-all duration-500 ease-[cubic-bezier(.22,.61,.36,1)] end-5 hover:bg-gold hover:shadow-[0_18px_40px_-14px_rgba(197,161,91,0.75)] focus-visible:bg-gold md:bottom-7 md:h-16 md:w-16 md:end-7"
     >
       <span
         className="absolute inset-0 rounded-full border border-gold/40 transition-transform duration-700 group-hover:scale-110"

@@ -11,7 +11,7 @@ The paths are defined in `src/lib/images.ts`.
 
 | Path | Used on | Suggested shot |
 | --- | --- | --- |
-| `hero-thobe.jpg` | Home hero (full-bleed) | A Saudi man in a white thobe, three-quarter or full length. Text sits over the left side in English and the right side in Arabic, so leave the figure off-centre. |
+| `hero-thobe.jpg` | Home hero (framed, right column) | A Saudi man in a white thobe, three-quarter or full length. Displayed as a **4:5 portrait, cropped to fill**, so keep the subject centred vertically. A charcoal wash covers the edge nearest the headline on desktop. |
 | `statement-thobe.jpg` | Home quote band (background) | A quiet, low-contrast thobe or fabric shot — it sits at 35% opacity behind text. |
 | `about-craft.jpg` | Home values column | Close craft detail: stitching, a collar, a cuff. |
 | `about-atelier.jpg` | About page | The workshop — cutting table, machine, pattern marks. |
@@ -46,7 +46,44 @@ The paths are defined in `src/lib/images.ts`.
   fill, so keep the subject away from the very edges.
 - **Size:** export at roughly 1600px on the long edge for gallery tiles and
   2400px for the hero. Compress to keep each file under ~400 KB.
-- **Format:** `.jpg` as listed. To use `.webp` or `.avif` instead, update the
-  paths in `src/lib/images.ts`.
+- **Format:** `.jpg` as listed. Prefer `.webp` for noticeably smaller files —
+  just change the path in `src/lib/images.ts` to match the file you add.
+- **Host images locally**, in this folder. `photos.hero` currently points at an
+  external `i.pinimg.com` URL; see the warning below.
 - **Alt text** is translated in both locales under `galleryData` in
   `src/i18n/en.ts` and `src/i18n/ar.ts`. Update it to match the real photo.
+
+
+## The hero image
+
+`photos.hero` in `src/lib/images.ts` is currently set to an external Pinterest
+URL (`https://i.pinimg.com/736x/...`) rather than a file in this folder. That
+is fine for previewing the layout, but it should not ship:
+
+- **Licensing** — the photograph is someone else's work, used here without a
+  licence. A commercial site needs an image Al Ashkar owns or has licensed.
+- **It can disappear** — Pinterest may block hotlinking at any time, and the
+  hero would then fall back to the placeholder artwork.
+- **Resolution** — the source is 736px wide but the hero renders up to 448px
+  CSS, which is already soft on a 2× screen.
+- **Speed** — the hero is marked `fetchpriority="high"`, so an extra DNS and
+  TLS round-trip to a third-party host delays the largest element on the page.
+
+Replace it with a local file:
+
+```ts
+// src/lib/images.ts
+export const photos = {
+  hero: '/images/hero-thobe.webp',
+  …
+}
+```
+
+Export it at roughly 1200×1500 (4:5) and compress to under ~300 KB.
+
+## The placeholder
+
+Any slot without a file renders line art instead of a broken image. In the
+hero it is drawn deliberately large — about 420–520px tall, at 45% opacity,
+in gold (`#C9A24B`) over a soft radial glow — so the section still reads as
+finished. Elsewhere it is smaller and quieter.

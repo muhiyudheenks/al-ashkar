@@ -26,7 +26,7 @@ export type GalleryImage = {
 
 /** Single-purpose images used in page layouts. */
 export const photos = {
-  hero: '/images/hero-thobe.jpg',
+  hero: 'https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg',
   aboutCraft: '/images/about-craft.jpg',
   aboutAtelier: '/images/about-atelier.jpg',
   servicesHero: '/images/services-fabric.jpg',

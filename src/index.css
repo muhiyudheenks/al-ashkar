@@ -350,6 +350,38 @@
     pointer-events: none;
   }
 
+  /* --- Hero image framing -------------------------------------------- */
+
+  /* A soft charcoal wash on the edge of the hero image that faces the text,
+     so the headline keeps its contrast. Mirrored for RTL, where the image
+     sits on the opposite side of the grid. */
+  .hero-wash {
+    background-image: linear-gradient(
+      to right,
+      rgb(32 32 32 / 0.82) 0%,
+      rgb(32 32 32 / 0.3) 44%,
+      rgb(32 32 32 / 0) 80%
+    );
+  }
+  html[dir='rtl'] .hero-wash {
+    background-image: linear-gradient(
+      to left,
+      rgb(32 32 32 / 0.82) 0%,
+      rgb(32 32 32 / 0.3) 44%,
+      rgb(32 32 32 / 0) 80%
+    );
+  }
+
+  /* Gold halo behind the hero artwork. */
+  .gold-glow {
+    background-image: radial-gradient(
+      closest-side,
+      rgb(201 162 75 / 0.26),
+      rgb(201 162 75 / 0.1) 55%,
+      rgb(201 162 75 / 0) 80%
+    );
+  }
+
   /* --- Footer link --------------------------------------------------- */
   .footer-link {
     color: color-mix(in srgb, var(--color-ivory) 70%, transparent);

@@ -30,6 +30,8 @@ export const en = {
       primary: 'Order Your Thobe',
       secondary: 'Explore Our Collection',
       scroll: 'Discover',
+      imageAlt:
+        'A Saudi man wearing a traditional white thobe tailored by Al Ashkar, showing the fall of the fabric and the set of the collar.',
     },
     strip: [
       { title: 'Measured by Hand', text: 'Every measurement taken and checked in person.' },

@@ -33,30 +33,31 @@ function Hero() {
 
   return (
     <section className="relative isolate flex min-h-[calc(100svh-var(--nav-h))] items-center overflow-hidden bg-charcoal">
-      {/* Photograph of a Saudi man in a traditional white thobe */}
-      <Photo
-        src={photos.hero}
-        alt={h.headline}
-        kind="portrait"
-        dark
-        loading="eager"
-        drift
-        note={false}
-        className="absolute inset-0 -z-10"
-      />
-
-      {/* Legibility wash — stronger at the text edge, lighter over the figure */}
+      {/* Woven texture and a soft vignette keep the charcoal from reading flat */}
       <div
-        className="absolute inset-0 -z-10 bg-linear-to-b from-charcoal/80 via-charcoal/55 to-charcoal/85 md:bg-linear-to-r md:from-charcoal/92 md:via-charcoal/55 md:to-charcoal/15 rtl:md:bg-linear-to-l"
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(45deg, rgba(247,243,235,.035) 0 1px, transparent 1px 10px)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          backgroundImage:
+            'radial-gradient(120% 90% at 50% 0%, rgba(58,58,58,.75) 0%, rgba(32,32,32,0) 60%)',
+        }}
       />
 
-      <div className="shell relative py-20 md:py-28">
-        <div className="max-w-2xl">
+      <div className="shell grid w-full items-center gap-14 py-16 md:py-20 lg:grid-cols-12 lg:gap-12 lg:py-24 xl:gap-16">
+        {/* ---------- Text ---------- */}
+        <div className="lg:col-span-7">
           <p className="fade eyebrow !text-gold-light">{h.eyebrow}</p>
 
           <h1
-            className="rise mt-6 text-[2.75rem] leading-[1.08] text-white text-balance md:text-6xl lg:text-7xl"
+            className="rise mt-6 text-[2.75rem] leading-[1.08] text-white text-balance md:text-6xl lg:text-[4rem]"
             style={{ '--d': '120ms' } as React.CSSProperties}
           >
             {h.headline}
@@ -88,12 +89,56 @@ function Hero() {
             </Link>
           </div>
         </div>
+
+        {/* ---------- Image ----------
+            Second in the DOM, so it sits below the text on small screens and
+            beside it from `lg` up. Grid column order flips automatically in
+            RTL, putting the image on the start side without any extra rules. */}
+        <div className="fade lg:col-span-5" style={{ '--d': '520ms' } as React.CSSProperties}>
+          {/* The column stays stretched and the box is pushed to the outer
+              edge with logical auto-margins. `justify-self-end` would make the
+              column shrink-to-fit, which collapses to zero width whenever the
+              photograph is missing and the fallback artwork — which has no
+              intrinsic size — is shown instead. */}
+          <div className="relative ms-auto me-auto w-full max-w-[20rem] sm:max-w-[23rem] lg:me-0 lg:max-w-[26rem] xl:max-w-[28rem]">
+            {/* Gold hairline frame, offset 16px toward the outer edge.
+                Logical insets mirror it for RTL on their own. */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-4 bottom-[-1rem] start-4 end-[-1rem] border border-gold/65"
+            />
+
+            {/* aspect-ratio reserves the box before the photo loads */}
+            <Photo
+              src={photos.hero}
+              alt={h.imageAlt}
+              kind="portrait"
+              dark
+              emphasis="hero"
+              note={false}
+              loading="eager"
+              fetchPriority="high"
+              width={880}
+              height={1100}
+              drift
+              className="relative aspect-[4/5] w-full bg-charcoal-soft/40"
+            />
+
+            {/* Charcoal wash on the edge facing the headline. Only from `lg`,
+                where the text actually sits beside the image — stacked on
+                smaller screens it would just dim the photograph. */}
+            <span
+              aria-hidden="true"
+              className="hero-wash pointer-events-none absolute inset-0 hidden lg:block"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Scroll hint */}
       <a
         href="#services"
-        className="fade absolute inset-x-0 bottom-7 mx-auto hidden w-fit flex-col items-center gap-2 text-ivory/55 transition-colors duration-400 hover:text-gold md:flex"
+        className="fade absolute inset-x-0 bottom-6 mx-auto hidden w-fit flex-col items-center gap-2 text-ivory/55 transition-colors duration-400 hover:text-gold lg:flex"
         style={{ '--d': '900ms' } as React.CSSProperties}
       >
         <span className="text-[0.5625rem] tracking-[0.3em] uppercase">{h.scroll}</span>

@@ -15,6 +15,15 @@ type PhotoProps = {
   drift?: boolean
   /** Show the "photograph to be added" note on the placeholder. */
   note?: boolean
+  /**
+   * 'hero' makes the fallback artwork a deliberate focal element: larger,
+   * brighter, and lit by a soft gold glow.
+   */
+  emphasis?: 'default' | 'hero'
+  /** Intrinsic size, so the browser reserves the box and nothing shifts. */
+  width?: number
+  height?: number
+  fetchPriority?: 'high' | 'low' | 'auto'
 }
 
 /**
@@ -34,6 +43,10 @@ export function Photo({
   loading = 'lazy',
   drift = false,
   note = true,
+  emphasis = 'default',
+  width,
+  height,
+  fetchPriority,
 }: PhotoProps) {
   const [failed, setFailed] = useState(false)
 
@@ -46,7 +59,7 @@ export function Photo({
   if (failed) {
     return (
       <div className={box} role="img" aria-label={alt}>
-        <PhotoPlaceholder kind={kind} dark={dark} note={note} />
+        <PhotoPlaceholder kind={kind} dark={dark} note={note} emphasis={emphasis} />
       </div>
     )
   }
@@ -56,8 +69,11 @@ export function Photo({
       <img
         src={src}
         alt={alt}
+        width={width}
+        height={height}
         loading={loading}
-        decoding="async"
+        fetchPriority={fetchPriority}
+        decoding={loading === 'eager' ? 'sync' : 'async'}
         onError={() => setFailed(true)}
         className={`h-full w-full object-cover ${drift ? 'drift' : ''} ${imgClassName}`}
       />
@@ -71,12 +87,15 @@ function PhotoPlaceholder({
   kind,
   dark,
   note,
+  emphasis,
 }: {
   kind: PhotoKind
   dark: boolean
   note: boolean
+  emphasis: 'default' | 'hero'
 }) {
   const { t } = useLang()
+  const isHero = emphasis === 'hero'
 
   // The background fills any aspect ratio via CSS, while the motif is a
   // centred, size-capped SVG — so a wide hero and a narrow tile both read
@@ -110,18 +129,31 @@ function PhotoPlaceholder({
         style={{ borderColor: dark ? 'rgba(197,161,91,.28)' : 'rgba(197,161,91,.32)' }}
       />
 
+      {/* A soft gold glow lifts the hero artwork off the charcoal */}
+      {isHero && (
+        <div
+          aria-hidden="true"
+          className="gold-glow absolute top-1/2 left-1/2 h-[78%] w-[88%] -translate-x-1/2 -translate-y-1/2"
+        />
+      )}
+
       {/* Motif */}
       <svg
         viewBox="0 0 400 500"
         preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
-        className="relative h-[62%] max-h-[260px] w-auto max-w-[60%]"
-        style={{ opacity: dark ? 0.5 : 0.78 }}
+        className={
+          isHero
+            ? 'relative h-[80%] max-h-[520px] w-auto max-w-[84%]'
+            : 'relative h-[62%] max-h-[260px] w-auto max-w-[60%]'
+        }
+        style={{ opacity: isHero ? 0.45 : dark ? 0.5 : 0.78 }}
       >
         <g
-          stroke="#C5A15B"
+          color={isHero ? '#C9A24B' : '#C5A15B'}
+          stroke={isHero ? '#C9A24B' : '#C5A15B'}
           fill="none"
-          strokeWidth="2.2"
+          strokeWidth={isHero ? 2.8 : 2.2}
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -194,9 +226,9 @@ function Motif({ kind }: { kind: PhotoKind }) {
           <path d="M142 373h116" opacity="0.3" />
           <path d="M176 119l24 26 24-26" />
           <path d="M200 145v228" strokeDasharray="7 9" opacity="0.7" />
-          <circle cx="200" cy="186" r="2.6" fill="#C5A15B" stroke="none" />
-          <circle cx="200" cy="222" r="2.6" fill="#C5A15B" stroke="none" />
-          <circle cx="200" cy="258" r="2.6" fill="#C5A15B" stroke="none" />
+          <circle cx="200" cy="186" r="2.6" fill="currentColor" stroke="none" />
+          <circle cx="200" cy="222" r="2.6" fill="currentColor" stroke="none" />
+          <circle cx="200" cy="258" r="2.6" fill="currentColor" stroke="none" />
         </>
       )
   }
