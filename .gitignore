@@ -8,3 +8,6 @@ dist-ssr
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Backup of the personal photo that was previously public/og-image.jpg
+og-image.original-backup.jpg

@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Al Ashkar — Crafted for Your Perfect Fit</title>
     <meta
       name="description"
       content="Al Ashkar — premium traditional thobe tailoring. Hand-measured, precisely stitched Saudi thobes crafted for your perfect fit."
     />
+    <link rel="canonical" href="https://al-ashkar.vercel.app/" />
     <meta name="theme-color" content="#FFFFFF" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,24 +19,40 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    
 
-<!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Al Ashkar" />
-<meta property="og:title" content="Al Ashkar | Premium Saudi Thobe Tailoring" />
-<meta property="og:description" content="Traditional Saudi thobe tailoring crafted for your perfect fit." />
-<meta property="og:url" content="https://al-ashkar.vercel.app/" />
-<meta property="og:image" content="https://al-ashkar.vercel.app/og-image.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Al Ashkar thobe tailoring" />
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Al Ashkar" />
+    <meta property="og:title" content="Al Ashkar | Premium Saudi Thobe Tailoring" />
+    <meta
+      property="og:description"
+      content="Traditional Saudi thobe tailoring crafted for your perfect fit."
+    />
+    <meta property="og:url" content="https://al-ashkar.vercel.app/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_SA" />
+    <!--
+      ?v=2 is a cache-buster. WhatsApp, Facebook and LinkedIn cache a scraped
+      image against its URL, and the previous og-image.jpg at this path was a
+      6.4 MB 3072x4096 photo. Bumping this number is the only reliable way to
+      make them re-fetch. Vercel serves the file regardless of the query.
+    -->
+    <meta property="og:image" content="https://al-ashkar.vercel.app/og-image.jpg?v=2" />
+    <meta property="og:image:secure_url" content="https://al-ashkar.vercel.app/og-image.jpg?v=2" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Al Ashkar — premium Saudi thobe tailoring" />
 
-<!-- X (Twitter) -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Al Ashkar | Premium Saudi Thobe Tailoring" />
-<meta name="twitter:description" content="Traditional Saudi thobe tailoring crafted for your perfect fit." />
-<meta name="twitter:image" content="https://al-ashkar.vercel.app/og-image.jpg" />
+    <!-- X (Twitter) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Al Ashkar | Premium Saudi Thobe Tailoring" />
+    <meta
+      name="twitter:description"
+      content="Traditional Saudi thobe tailoring crafted for your perfect fit."
+    />
+    <meta name="twitter:image" content="https://al-ashkar.vercel.app/og-image.jpg?v=2" />
+    <meta name="twitter:image:alt" content="Al Ashkar — premium Saudi thobe tailoring" />
   </head>
   <body>
     <div id="root"></div>
