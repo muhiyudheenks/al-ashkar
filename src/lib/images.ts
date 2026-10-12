@@ -27,11 +27,11 @@ export type GalleryImage = {
 /** Single-purpose images used in page layouts. */
 export const photos = {
   hero: 'https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg',
-  aboutCraft: '/images/about-craft.jpg',
-  aboutAtelier: '/images/about-atelier.jpg',
-  servicesHero: '/images/services-fabric.jpg',
-  statement: '/images/statement-thobe.jpg',
-  contact: '/images/contact-shop.jpg',
+  aboutCraft: "https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg",
+  aboutAtelier: 'https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg',
+  servicesHero: 'https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg',
+  statement: 'https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg',
+  contact: 'https://i.pinimg.com/736x/1b/fd/d0/1bfdd000620efdb4c172c86ba8d0cc54.jpg',
 } as const
 
 export const gallery: GalleryImage[] = [
